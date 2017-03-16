@@ -1,0 +1,97 @@
+.wrapper{
+	background-color: #222;
+	height: 120vh;
+	box-shadow: inset 0px 0px 100px 25px #000;
+}
+
+ul{
+	list-style-type: none; 
+}
+
+li{
+	padding-bottom: 20px;
+}
+
+.container{
+	text-align: center;	
+}
+
+form{
+	margin-top: 10%;
+}
+
+input{
+	background-color: #ffd;
+	width: 50%;
+	min-height: 5vh;
+	border-radius: 4px;
+	border: solid 3px #555;
+	padding: 5px;
+	box-shadow: 3px 2px 10px 5px black;
+}
+
+input:focus{
+	outline: 0 !important;
+}
+
+.error { 	
+	border-color: red; 
+}
+
+.success { 
+	border-color: #177B09; 
+}
+
+.fa-check{
+  color: green;
+  visibility: hidden;
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.fa-times{    
+  color: red;
+  visibility: hidden;
+  font-size: 24px;
+  margin-left: 10px; 
+}
+p{
+	color: #666;	 
+	padding-top: 70px;
+	padding-left: 35px;
+	font-size: 5rem;
+	padding-bottom: 0px; 
+}
+
+.date, .cvv{
+  width: 16.9% !important;
+}
+@media(max-width: 1199px){
+ 	.date, .cvv{
+  	width: 15% !important;
+}
+}
+@media(max-width: 992px){
+  .wrapper{
+  	height: 100%;
+  }
+  .date, .cvv{
+  	margin-top: 20px;
+  	margin-left: 42px;
+  	width: 48% !important;
+  }
+} 
+@media(max-width: 768px){
+  p{
+  		font-size: 3rem;
+  	}
+  }
+
+@media(max-width: 330px){
+  .date, .cvv{
+  	margin-top: 15px;
+  	margin-left: 40px;
+  	width: 46% !important;
+  }
+ }
+
