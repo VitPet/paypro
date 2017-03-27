@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>jQuery task - 1 </title>
+  <title>PayPro</title>
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/style.css">
 <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 </head>
 <body>
 <div class="wrapper">
@@ -20,36 +19,36 @@
                     <ul>
                         <li> 
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="name" placeholder="Name" type="text"> 
+                            <input class="name" name="name" data-placement="left" placeholder="Name" data-toggle="tooltip" type="text" title="Name should not contain numbers or special characters"> 
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li> 
       
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="surname" placeholder="Surname" type="text"> 
+                            <input  class="surname" data-placement="left" data-toggle="tooltip" name="surname" placeholder="Surname" type="text" title="Surname should not contain numbers or special characters"> 
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li>
-    
+   
 
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="login" placeholder="Login" type="text"> 
+                            <input data-placement="left" data-toggle="tooltip" name="login" placeholder="Login" type="text" title="Login must be longer than 5 characters and not contain special characters"> 
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li>
 
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="email" placeholder="Email" type="text"> 
+                            <input data-placement="left" data-toggle="tooltip" name="email" placeholder="Email" type="text" title="Email must follow the format test@1and1.com, does not belong to the list of open / free and be relevant"> 
                             <i class="fa fa-times" aria-hidden="true"></i>  
                         </li>
                         
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input class="password" name="password" placeholder="Password" type="password"> 
+                            <input  name="password"  data-placement="left" data-toggle="tooltip" placeholder="Password" type="password" title="Password must be longer than 5 characters and contain special characters or numbers"> 
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="confirm" placeholder="Confirm password" type="password" >
+                            <input name="confirm" placeholder="Confirm password" type="password">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         <li>
                              
@@ -63,33 +62,31 @@
                     <ul>
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="tel" placeholder="Tel" type="text">
+                            <input name="tel" data-placement="right" placeholder="Tel" data-toggle="tooltip" type="text" title="Phone number should be in the format +380*********">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li>
 
                         <li>
-                            
-
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="site" placeholder="Site name" type="text"> 
+                            <input data-placement="right" name="site"  data-toggle="tooltip" placeholder="Site name" type="text" title="Site name should be relevant"> 
                             <i class="fa fa-times" aria-hidden="true"></i> 
                         </li>
 
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input class="position" name="position" placeholder="Position" type="text"> 
+                            <input class="position" data-placement="right" data-toggle="tooltip" name="position" placeholder="Position" type="text" title="Position should not contain numbers and be more than 5 characters"> 
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li>
 
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="company" placeholder="Company name" type="text"> 
+                            <input data-placement="right" name="company" data-toggle="tooltip" placeholder="Company name" type="text" title="Company name must exist in list of LinkedIn companies"> 
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li> 
                         
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="card" placeholder="Bank card number" type="text"> 
+                            <input data-placement="right" name="card" data-toggle="tooltip" placeholder="Bank card number" type="text" title="Card number should be relevant"> 
                             <i class="fa fa-times" aria-hidden="true"></i>
                              
                         </li>
@@ -97,16 +94,14 @@
                         <div class="row">
                              <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input class="date" name="date" placeholder="MM/YY" type="text">
+                            <input class="date titleHidden" name="date" data-placement="left" placeholder="MM/YY" data-toggle="tooltip" type="text" title="Date should be relevant">
                             <i class="fa fa-times" aria-hidden="true"></i>
                        
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input class="cvv" name="cvv" placeholder="CVV" type="text">
+                            <input class="cvv titleHidden" name="cvv" data-placement="right" placeholder="CVV" data-toggle="tooltip" type="text" title="CVV code should contain 3 numbers and does not contain special characters">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li>
                         </div>                   
-    
-                       
                     </ul>
                 </form>
             </div>
@@ -114,23 +109,6 @@
     </div>
 </div>   
      
-          
-<!--      
-      <input name="login" placeholder="Login" type="text">
-       
-      <input name="password" placeholder="Password" type="text">
-       
-      <input name="confirmPass" placeholder="ConfirmPass" type="text">
--->
-    
-
-
-    
-
-   
-    
-
-
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
