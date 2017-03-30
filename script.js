@@ -101,7 +101,6 @@ $(document).ready(function() {
   });
 
 
-
   $('input[name="position"]').focusout(function(){  
     function validPosition(){
       var position = $('input[name="position"]').val()
@@ -140,25 +139,8 @@ $(document).ready(function() {
       "autorambler.ru", "ro.ru", "r0.ru", "yandex.ru", "ya.ru", "яндекс.рф", "habrahabr.ru", "ua.com", "ui.com"];
       var email = $('input[name="email"]').val();
       var domain = email.split("@");
-      if (!_.findWhere(email, '@') || email  === "")  {
-        $('i:eq(6).fa-check').css("visibility", "hidden");
-        $('i:eq(7).fa-times').css("visibility", "visible");   
-        $('input[name="email"]').removeClass("success");
-        $('input[name="email"]').addClass("error");
-      }else if (!email.match(/([a-z0-9_-]+@[a-z0-9-]+\.[a-z]{2,6})/g)) {
-        $('i:eq(6).fa-check').css("visibility", "hidden");
-        $('i:eq(7).fa-times').css("visibility", "visible"); 
-        $('input[name="email"]').removeClass("success");
-        $('input[name="email"]').addClass("error");
-      }
-      else if (arr.some(e => e == domain[1])) {
-        $('i:eq(6).fa-check').css("visibility", "hidden");
-        $('i:eq(7).fa-times').css("visibility", "visible"); 
-        $('input[name="email"]').removeClass("success");
-        $('input[name="email"]').addClass("error");
-      }                  
-      else{
-       var xemail = $('input[name="email"]').val();
+    if (email.match(/(^[a-z0-9_-]+@[a-z0-9-]+\.[a-z]{2,4})$/g) && (arr.some(e => e !== domain[1]))) {
+      var xemail = $('input[name="email"]').val();
        xdomain = xemail;
        var url = "http://"+xdomain;
        var yUrl = "http://query.yahooapis.com/v1/public/yql?", qry = "q=select%20*%20from%20html%20where%20url%3D%22";
@@ -167,7 +149,6 @@ $(document).ready(function() {
           $('i:eq(7).fa-times').css("visibility", "hidden");
           $('i:eq(6).fa-check').css("visibility", "visible");
           $('input[name="email"]').addClass("success");
-          
         }
         else {
           $('i:eq(6).fa-check').css("visibility", "hidden");
@@ -176,7 +157,16 @@ $(document).ready(function() {
           $('input[name="email"]').addClass("error");
         }        
       });
-     }            
+       
+      }
+
+      else  {
+        $('i:eq(6).fa-check').css("visibility", "hidden");
+        $('i:eq(7).fa-times').css("visibility", "visible"); 
+        $('input[name="email"]').removeClass("success");
+        $('input[name="email"]').addClass("error");
+      }                  
+      
    }
    validEmail();   
 
