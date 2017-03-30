@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="css/style.css">
 <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">
 </head>
 <body>
 <div class="wrapper">
@@ -62,7 +63,7 @@
                     <ul>
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input name="tel" data-placement="right" placeholder="Tel" data-toggle="tooltip" type="text" title="Phone number should be in the format +380*********">
+                            <input name="tel" data-placement="right" placeholder="Tel" data-toggle="tooltip" type="text" title="Phone number should be in format +38(***)**-**-*** For example: +38(067)30-30-217">
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li>
 
@@ -80,7 +81,9 @@
 
                         <li>
                             <i class="fa fa-check" aria-hidden="true"></i>
-                            <input data-placement="right" name="company" data-toggle="tooltip" placeholder="Company name" type="text" title="Company name must exist in list of LinkedIn companies"> 
+                            <select class="js-data-example-ajax"  style="width:50%">
+                            <option value="3620194" selected="selected">Select a value..</option>
+                            </select>
                             <i class="fa fa-times" aria-hidden="true"></i>
                         </li> 
                         
@@ -107,10 +110,11 @@
             </div>
         </div>
     </div>
+    
 </div>   
      
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
   <script src="script.js"></script>
   <!-- Latest compiled and minified JavaScript -->

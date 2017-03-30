@@ -1,3 +1,62 @@
+function formatRepo (repo) {
+    if (repo.loading) return repo.text;
+
+    var markup = '<div class="clearfix">' +
+    '<div class="col-sm-1">' +
+    '<img src="' + repo.owner.avatar_url + '" style="max-width: 50px" />' +
+    '</div>' +
+    '<div clas="col-sm-10">' +
+    '<div class="clearfix">' +
+    '<div class="col-sm-6">' + repo.full_name + '</div>' +
+    '<div class="col-sm-3"><i class="fa fa-code-fork"></i> ' + repo.forks_count + '</div>' +
+    '<div class="col-sm-2"><i class="fa fa-star"></i> ' + repo.stargazers_count + '</div>' +
+    '</div>';
+
+    if (repo.description) {
+      markup += '<div>' + repo.description + '</div>';
+    }
+
+    markup += '</div></div>';
+
+    return markup;
+  }
+
+  function formatRepoSelection (repo) {
+    return repo.full_name || repo.text;
+  }
+
+$(document).ready(function(){
+
+    $(".js-data-example-ajax").select2({
+      ajax: {
+        url: "https://api.github.com/search/repositories",
+        dataType: 'json',
+        delay: 250,
+        data: function (params) {
+          return {
+            q: params.term, // search term
+            page: params.page
+          };
+        },
+        processResults: function (data, page) {
+          // parse the results into the format expected by Select2.
+          // since we are using custom formatting functions we do not need to
+          // alter the remote JSON data
+          return {
+            results: data.items  
+          };
+        },
+        cache: true
+      },
+      escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+      minimumInputLength: 1,
+      templateResult: formatRepo, // omitted for brevity, see the source of this page
+       templateSelection: formatRepoSelection // omitted for brevity, see the source of this page  
+        
+    });
+  }); 
+
+
 $(document).ready(function() {
   $('[data-toggle="tooltip"]').tooltip();
   $('input[name="name"]').focusout(function(){
@@ -46,19 +105,24 @@ $(document).ready(function() {
   $('input[name="position"]').focusout(function(){  
     function validPosition(){
       var position = $('input[name="position"]').val()
-      if (position.match(/[0-9]/g)  || position.length<5 || position  === "") {
-       $('i:eq(16).fa-check').css("visibility", "hidden");
-       $('i:eq(17).fa-times').css("visibility", "visible");
-       $('input[name="position"]').removeClass("success");
-       $('input[name="position"]').addClass("error");
-     }
-     else{
+      if (position.match(/^[A-Z]+$/g) && position.length>0) {    
       $('i:eq(17).fa-times').css("visibility", "hidden");
       $('i:eq(16).fa-check').css("visibility", "visible");
       $('input[name="position"]').addClass("success");
-      
+      }
+     
+    else if(position.match(/^[A-Za-z]+$/g) && position.length>4) {
+      $('i:eq(17).fa-times').css("visibility", "hidden");
+      $('i:eq(16).fa-check').css("visibility", "visible");
+      $('input[name="position"]').addClass("success");
+
     }
-    
+    else{
+      $('i:eq(16).fa-check').css("visibility", "hidden");
+       $('i:eq(17).fa-times').css("visibility", "visible");
+       $('input[name="position"]').removeClass("success");
+       $('input[name="position"]').addClass("error");
+    }
   }
   validPosition();   
 });
@@ -126,7 +190,7 @@ $(document).ready(function() {
   $('input[name="login"]').focusout(function(){  
     function validLogin(){
       var login = $('input[name="login"]').val()
-      if (login.match(/[*!@#$%^&()-/_=+]/g) || login.length<5 || login  === "") {
+      if (login.match(/[*!@#$%^&()-/_=+]/g) ||!login.match(/^[0-9a-zA-Z]+$/)|| login.length<5 || login  === "") {
        $('i:eq(4).fa-check').css("visibility", "hidden");
        $('i:eq(5).fa-times').css("visibility", "visible");
        $('input[name="login"]').removeClass("success");
@@ -150,14 +214,13 @@ $(document).ready(function() {
   $('input[name="password"]').focusout(function(){  
     function validPassword(){
       var password = $('input[name="password"]').val()
-      if (!password.match(/[0-9!-*@$%+=-_()#&\/]/g) || password.length<5 || password  === "") {
+      if (!password.match(/[!-*@$%+=-_()#&\/]/g) || !password.match(/[0-9]/g) || password.length<5 || password  === "") {
         $('i:eq(8).fa-check').css("visibility", "hidden");
         $('i:eq(9).fa-times').css("visibility", "visible");
         $('input[name="password"]').removeClass("success");
         $('input[name="password"]').addClass("error");
       }
-      else{
-        
+      else{  
         $('i:eq(9).fa-times').css("visibility", "hidden");
         $('i:eq(8).fa-check').css("visibility", "visible");
         $('input[name="password"]').addClass("success");
@@ -191,7 +254,7 @@ $(document).ready(function() {
   $('input[name="tel"]').focusout(function(){  
     function validTel(){
       var tel = $('input[name="tel"]').val()
-      if (!tel.match(/[+]/g) || tel.length !== 13 || tel  === "") {
+      if (!tel.match(/^[+][3][8]\([\d]{3}\)[\d]{2}-[\d]{2}-[\d]{3}$/) || tel  === "") {
        $('i:eq(12).fa-check').css("visibility", "hidden");
        $('i:eq(13).fa-times').css("visibility", "visible");
        $('input[name="tel"]').removeClass("success");
@@ -211,6 +274,17 @@ $(document).ready(function() {
 
     var card = $('input[name="card"]').val();
     function validLuhn(N) {
+      var arr2 = ['378282246310005','371449635398431','378734493671000','5610591081018250',
+      '30569309025904','38520000023237','6011111111111117','6011000990139424','3530111333300000',
+      '3566002020360505','5555555555554444','5105105105105100','4111111111111111','4012888888881881',
+      '4222222222222','76009244561','5019717010103742','6331101999990016','3566 1111 1111 1113'];
+      if(arr2.some(e => e == card) || card == ""){
+        $('i:eq(20).fa-check').css("visibility", "hidden");
+        $('i:eq(21).fa-times').css("visibility", "visible");
+        $('input[name="card"]').removeClass("success");
+        $('input[name="card"]').addClass("error");
+        return;
+      }
       if (N.length%2!=0) N="0"+N;
       var K, Sum=0;
       for (var i=0; i<N.length; i+=2) Sum+=((K=N.charAt(i)*2)>9?K-9:K)+Number(N.charAt(i+1));
